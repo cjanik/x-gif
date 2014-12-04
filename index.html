@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>x-gif demo</title>
+  <script>
+  if ('registerElement' in document
+    && 'createShadowRoot' in HTMLElement.prototype
+    && 'import' in document.createElement('link')
+    && 'content' in document.createElement('template')) {
+    // We're using a browser with native WC support!
+  } else {
+    document.write('<script src="dist/platform.js"><\/script>')
+  }
+</script>
+
+  <script src="angular.min.js"></script>
+<link rel="import" href="dist/x-gif.html">
+</head>
+
+<body ng-app="gifApp" ng-controller="GifCtrl as giffer">
+	<div>
+		speed control - .1<input type="range" min=".1" max="20" ng-model="giffer.speed">20
+		<br>
+		<x-gif src="wacky.gif" ping-pong speed="{{giffer.speed}}"> </x-gif>
+	</div>
+
+<script type="text/javascript" charset="utf-8">
+
+angular.module('gifApp', [])
+.controller('GifCtrl', function(){
+	var that = this;
+	that.source= 'gourd.gif';
+	that.speed= 1;
+})
+;
+
+</script>
+</body>
+</html>
